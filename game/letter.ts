@@ -14,7 +14,7 @@ export interface LetterPiece {
 }
 
 export const LETTER_TITLE = "Happy 3rd Month";
-export const LETTER_SIGNOFF = "— Mahal kita";
+export const LETTER_SIGNOFF = "— Dyze";
 
 export const LETTER_PIECES: LetterPiece[] = [
   {
@@ -39,7 +39,7 @@ I can't believe how quickly time passes and slowly at the same time. But I'm lov
   {
     id: 4,
     hint: "The things I love",
-    text: `You never lost your beautiful smile and nakakahawang laugh. Your cute reactions on things is still the best. Your mataray at tampuhin attitude that I find really cute pati na rin ang iyong pagiging iyakin hahaha. Your love for your fam and friends and church and those you disciple. And your desire to keep on knowing God and reading His word. I love you for all those!!
+    text: `You never lost your beautiful smile and nakakahawang laugh. Your cute reactions on things is still the best. Your beautiful face kahit ilang pimples pa ang tumubo dyan, you are still beautiful to me. Your mataray at tampuhin attitude that I find really cute pati na rin ang iyong pagiging iyakin hahaha. Your love for your fam and friends and church and those you disciple. And your desire to keep on knowing God and reading His word. I love you for all those!!
 
 May our relationship remain healthy and above all, Godly. May we both continue to grow in Christ - becoming more like Him and love Him more and more. And malay mo, one day our lives would be a documentary din... Of being a great model of a Christ-like relationship for the next and next generations - or even (god-willingly) our children...`,
   },
