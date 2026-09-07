@@ -1,0 +1,773 @@
+:root {
+  --bg: #fdf7f4;
+  --card: #ffffff;
+  --ink: #2c2422;
+  --muted: #7d6f6a;
+  --accent: #e0607e;
+  --accent-soft: #ffe8ee;
+  --line: #f0e2dc;
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  padding: 2px 6px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.12);
+  font: 600 11px/1.4 ui-monospace, monospace;
+  letter-spacing: 0.04em;
+}
+
+/* ---------- hub ---------- */
+
+.hub {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 72px 24px 96px;
+}
+
+.hub-hello {
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+
+.hub h1 {
+  font-size: clamp(34px, 6vw, 52px);
+  line-height: 1.08;
+  margin: 0 0 16px;
+  letter-spacing: -0.02em;
+}
+
+.hub-sub {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0 0 44px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.card {
+  display: block;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 26px;
+  transition:
+    transform 0.16s ease,
+    box-shadow 0.16s ease,
+    border-color 0.16s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  box-shadow: 0 14px 34px -18px rgba(224, 96, 126, 0.5);
+}
+
+.card-emoji {
+  font-size: 30px;
+  display: block;
+  margin-bottom: 14px;
+}
+
+.card h2 {
+  margin: 0 0 8px;
+  font-size: 19px;
+}
+
+.card p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.card-soon {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.badge {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.hub-note {
+  margin-top: 44px;
+  padding: 18px 20px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px dashed var(--line);
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+.hub-note code {
+  background: var(--accent-soft);
+  color: var(--accent);
+  padding: 2px 6px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 22px;
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.back-link:hover {
+  color: var(--accent);
+}
+
+.sound-toggle {
+  position: absolute;
+  top: calc(14px + env(safe-area-inset-top));
+  left: 96px;
+  z-index: 6;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(16, 22, 26, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #dfe8e4;
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.sound-toggle:hover {
+  color: #fff;
+}
+
+.sound-slash {
+  position: absolute;
+  width: 22px;
+  height: 2px;
+  background: #ff8a80;
+  transform: rotate(-45deg);
+  border-radius: 2px;
+}
+
+@media (pointer: coarse) {
+  .sound-toggle {
+    left: 84px;
+    top: calc(9px + env(safe-area-inset-top));
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* ---------- hearts ---------- */
+
+.hearts {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 2px;
+}
+
+.heart {
+  position: relative;
+  width: 19px;
+  height: 19px;
+  display: block;
+}
+
+.heart-empty {
+  color: rgba(255, 255, 255, 0.22);
+}
+
+.heart-clip {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  display: block;
+}
+
+.heart-full {
+  color: #ff5c72;
+  filter: drop-shadow(0 0 3px rgba(255, 60, 90, 0.5));
+}
+
+/* ---------- gun slots ---------- */
+
+.gun-slots {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 18px;
+  z-index: 5;
+  display: flex;
+  gap: 7px;
+  width: 330px;
+  pointer-events: none;
+}
+
+.gun-slots > * {
+  pointer-events: auto;
+}
+
+.gun-slot {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 10px;
+  border-radius: 11px;
+  background: rgba(16, 22, 26, 0.82);
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  color: #cfdbd6;
+  font-family: inherit;
+  backdrop-filter: blur(6px);
+  pointer-events: auto;
+  cursor: pointer;
+  text-align: left;
+}
+
+.gun-slot.empty {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.gun-slot.active {
+  border-color: #ffd166;
+  background: rgba(70, 58, 20, 0.75);
+  color: #fff;
+}
+
+.gun-slot-num {
+  font-size: 9px;
+  font-weight: 800;
+  opacity: 0.6;
+}
+
+.gun-slot-name {
+  flex: 1;
+  min-width: 0;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gun-slot-ammo {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+  font-size: 13px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.gun-slot-ammo i {
+  font-style: normal;
+  font-size: 10px;
+  opacity: 0.6;
+}
+
+/* ---------- aim stick ---------- */
+
+/* .stick-base is declared LATER in this file, so these need the extra class to
+   win on specificity rather than source order — otherwise both sticks stack in
+   the bottom-left and the aim stick swallows every touch. */
+.stick-base.aim-stick {
+  left: auto;
+  right: calc(20px + env(safe-area-inset-right));
+  border-color: rgba(255, 150, 130, 0.45);
+}
+
+.stick-base.aim-stick .stick-knob {
+  background: rgba(255, 205, 190, 0.85);
+  border-color: rgba(255, 230, 220, 0.95);
+}
+
+.stick-base.aim-stick.sprinting {
+  border-color: rgba(255, 110, 90, 0.95);
+}
+
+.stick-base.aim-stick.empty {
+  border-color: rgba(255, 138, 128, 0.7);
+}
+
+/* ---------- hearts end ---------- */
+
+/* ---------- weapon panel ---------- */
+
+
+.weapon-panel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 14px;
+  border-radius: 12px;
+  background: rgba(16, 22, 26, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(6px);
+  width: 232px;
+}
+
+.weapon-panel.empty {
+  opacity: 0.7;
+}
+
+.weapon-icon {
+  font-size: 20px;
+}
+
+.weapon-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 13px;
+  min-width: 0;
+  flex: 1;
+}
+
+.weapon-info strong {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.weapon-ammo {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.weapon-ammo b {
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.weapon-ammo i {
+  font-style: normal;
+  font-size: 11px;
+  color: #8fa39c;
+}
+
+.weapon-ammo em {
+  font-style: normal;
+  font-size: 10px;
+  color: #ff8a80;
+  font-weight: 700;
+}
+
+.weapon-reload {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  color: #ffd166;
+  font-weight: 700;
+}
+
+.weapon-reload-track {
+  flex: 1;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  overflow: hidden;
+}
+
+.weapon-reload-fill {
+  display: block;
+  height: 100%;
+  background: #ffd166;
+}
+
+/* ---------- touch action cluster ---------- */
+
+.action-cluster {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(68px + env(safe-area-inset-bottom));
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.action-cluster > * {
+  pointer-events: auto;
+  touch-action: none;
+}
+
+.mini-button {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: rgba(16, 22, 26, 0.55);
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  color: #dfe8e4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  backdrop-filter: blur(3px);
+  padding: 0;
+}
+
+.mini-button.ready {
+  border-color: rgba(111, 220, 140, 0.9);
+}
+
+.mini-button.ready.blocked {
+  border-color: rgba(255, 138, 128, 0.9);
+}
+
+.mini-button:active {
+  transform: scale(0.93);
+}
+
+.mini-icon {
+  font-size: 19px;
+  line-height: 1;
+}
+
+.mini-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  min-width: 17px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: #6fdc8c;
+  color: #10231a;
+  font-size: 10px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.mini-button.heal.ready {
+  border-color: rgba(111, 220, 140, 0.9);
+}
+
+.mini-button {
+  position: relative;
+}
+
+.mini-label {
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  opacity: 0.75;
+}
+
+.fire-button {
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  background: rgba(150, 40, 30, 0.55);
+  border: 3px solid rgba(255, 140, 110, 0.75);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  backdrop-filter: blur(3px);
+  padding: 0;
+}
+
+.fire-button:active {
+  transform: scale(0.94);
+  background: rgba(200, 60, 40, 0.75);
+}
+
+.fire-button.empty {
+  border-color: rgba(255, 138, 128, 0.95);
+  background: rgba(60, 25, 22, 0.6);
+}
+
+.fire-button.reloading {
+  border-color: rgba(255, 209, 102, 0.9);
+}
+
+.fire-icon {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.fire-label {
+  font-size: 11px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- touch controls ---------- */
+
+
+.touch-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.stick-base {
+  position: absolute;
+  left: calc(20px + env(safe-area-inset-left));
+  bottom: calc(20px + env(safe-area-inset-bottom));
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+  background: rgba(16, 22, 26, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(3px);
+  display: grid;
+  place-items: center;
+  pointer-events: auto;
+  touch-action: none;
+  transition: border-color 0.15s ease;
+}
+
+.stick-base.sprinting {
+  border-color: rgba(255, 209, 102, 0.85);
+}
+
+.stick-knob {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.75);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+
+.stick-hint {
+  position: absolute;
+  bottom: -19px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.55);
+  pointer-events: none;
+}
+
+.stick-base.sprinting .stick-hint {
+  color: #ffd166;
+}
+
+.rotate-gate {
+  z-index: 20;
+}
+
+@keyframes rotate-nudge {
+  0%,
+  55%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25%,
+  45% {
+    transform: rotate(90deg);
+  }
+}
+
+/* ---------- small screens / touch layout ---------- */
+
+@media (pointer: coarse) {
+  /* Bars sit top-left so the joystick owns the bottom-left corner. */
+  .hud-bottom {
+    top: calc(56px + env(safe-area-inset-top));
+    bottom: auto;
+    left: calc(12px + env(safe-area-inset-left));
+  }
+
+  .bars {
+    width: 148px;
+    gap: 4px;
+  }
+
+  .bar-value {
+    width: 26px;
+    font-size: 10px;
+  }
+
+  .pickup-prompt {
+    display: none;
+  }
+
+  .gun-slots {
+    width: 296px;
+    bottom: calc(14px + env(safe-area-inset-bottom));
+  }
+
+  .gun-slot {
+    padding: 5px 8px;
+    gap: 5px;
+  }
+
+  .gun-slot-name {
+    font-size: 11px;
+  }
+
+  .weapon-info {
+    font-size: 11px;
+  }
+
+  .weapon-ammo b {
+    font-size: 14px;
+  }
+
+  .hud-top {
+    top: calc(10px + env(safe-area-inset-top));
+    gap: 5px;
+  }
+
+  .hud-chip {
+    min-width: 0;
+    padding: 4px 9px;
+  }
+
+  .hud-chip-value {
+    font-size: 11px;
+  }
+
+  .zone-warning {
+    top: auto;
+    top: calc(78px + env(safe-area-inset-top));
+    bottom: auto;
+    left: 50%;
+    font-size: 11px;
+    padding: 6px 14px;
+  }
+
+  .toast-stack {
+    top: auto;
+    bottom: calc(168px + env(safe-area-inset-bottom));
+    left: calc(14px + env(safe-area-inset-left));
+    transform: none;
+    align-items: flex-start;
+  }
+
+  .kit {
+    width: 146px;
+    right: calc(12px + env(safe-area-inset-right));
+    top: calc(118px + env(safe-area-inset-top));
+    bottom: auto;
+    max-height: 38vh;
+    padding: 8px;
+  }
+
+  .kit.collapsed .kit-list {
+    display: none;
+  }
+
+  .kit-slot {
+    width: 29px;
+    height: 29px;
+  }
+
+  .kit-actions button {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+
+  .game-exit {
+    top: calc(10px + env(safe-area-inset-top));
+    left: calc(10px + env(safe-area-inset-left));
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+
+  .overlay-card {
+    padding: 20px;
+  }
+
+  .overlay-card h2 {
+    font-size: 19px;
+  }
+
+  .overlay-card p {
+    font-size: 13px;
+    margin-bottom: 14px;
+  }
+
+  .controls-grid {
+    margin-bottom: 16px;
+  }
+}
+
+/* Short windows on any device: compact the chrome, keep the pointer HUD intact. */
+@media (max-height: 560px) {
+  .hud-chip {
+    min-width: 0;
+    padding: 4px 9px;
+  }
+
+  .hud-chip-value {
+    font-size: 11px;
+  }
+
+  .kit {
+    max-height: 46vh;
+  }
+
+  .bars {
+    width: 180px;
+  }
+}
+
+@media (max-width: 720px) {
+  .hub {
+    padding: 44px 18px 64px;
+  }
+}
