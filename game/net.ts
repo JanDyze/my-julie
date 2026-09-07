@@ -23,7 +23,8 @@ export type NetStatus = "connecting" | "online" | "offline" | "error";
 
 export function defaultServerUrl(): string {
   // A deployed site must point at a hosted wss:// server; an https page cannot
-  // open a plain ws:// connection.
+  // open a plain ws:// connection. Only ever called from a click handler, so
+  // touching `window` here can't cause a hydration mismatch.
   const configured = process.env.NEXT_PUBLIC_GAME_SERVER;
   if (configured) return configured;
 
@@ -31,14 +32,6 @@ export function defaultServerUrl(): string {
   // Local dev: same host the page came from, so a phone on the LAN finds it.
   const scheme = window.location.protocol === "https:" ? "wss" : "ws";
   return `${scheme}://${window.location.hostname}:${DEFAULT_PORT}`;
-}
-
-/** True when multiplayer has somewhere to connect to. */
-export function multiplayerConfigured(): boolean {
-  if (process.env.NEXT_PUBLIC_GAME_SERVER) return true;
-  // On a deployed https origin with no server configured, only solo works.
-  if (typeof window === "undefined") return false;
-  return window.location.protocol !== "https:";
 }
 
 export class NetClient {

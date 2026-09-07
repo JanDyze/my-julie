@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { GameEngine, HudState } from "@/game/engine";
 import { ITEMS, RARITY_COLORS } from "@/game/items";
-import { NetClient, NetStatus, defaultServerUrl, multiplayerConfigured } from "@/game/net";
+import { NetClient, NetStatus, defaultServerUrl } from "@/game/net";
 import { FlightPath, MatchState, ZoneState, randomFlightPath } from "@/game/shared";
 import TouchControls from "./TouchControls";
 import LetterReader from "./LetterReader";
@@ -302,20 +302,12 @@ export default function Game() {
               </>
             ) : (
               <div className="lobby-actions">
-                {multiplayerConfigured() ? (
-                  <>
-                    <button className="primary" onClick={startOnline}>
-                      Play together
-                    </button>
-                    <button className="ghost" onClick={startSolo}>
-                      Play solo
-                    </button>
-                  </>
-                ) : (
-                  <button className="primary" onClick={startSolo}>
-                    Play
-                  </button>
-                )}
+                <button className="primary" onClick={startOnline}>
+                  Play together
+                </button>
+                <button className="ghost" onClick={startSolo}>
+                  Play solo
+                </button>
               </div>
             )}
 

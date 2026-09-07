@@ -1,48 +1,56 @@
 /**
- * The five pieces of the letter.
+ * The five pieces of the letter — the reason this game exists.
  *
- * ─────────────────────────────────────────────────────────────────
- *  EDIT THE `text` FIELDS BELOW. This is the whole point of the game.
- *  Each piece is one part of the letter, read in order once all five
- *  are found. Keep them fairly short — they're read on a phone.
- * ─────────────────────────────────────────────────────────────────
+ * The words are his, split at natural turns. `hint` is what shows in the
+ * tracker and in the "you found a piece" modal, so keep those evocative
+ * without giving the piece away.
  */
 
 export interface LetterPiece {
   id: number;
-  /** Shown in the collection tracker before it's found. */
+  /** Shown when the piece is found, before the whole letter is readable. */
   hint: string;
   text: string;
 }
 
-export const LETTER_TITLE = "For Julie";
-export const LETTER_SIGNOFF = "— always yours";
+export const LETTER_TITLE = "Happy 3rd Month";
+export const LETTER_SIGNOFF = "— Mahal kita";
 
 export const LETTER_PIECES: LetterPiece[] = [
   {
     id: 1,
-    hint: "The first piece",
-    text: "PLACEHOLDER — replace me. This is where the letter begins.",
+    hint: "How it starts",
+    text: `Hey Baby? Beh? Bih? Love? Honey? Mahal? Bibi? Sweetheart?
+
+We have not established that one but I know we'll figure it out haha. Happy 3rd month to our relationship as officially boyfriend and girlfriend.
+
+I can't believe how quickly time passes and slowly at the same time. But I'm loving every second that we spend together - mapawork man yan, therapy, pagkain, panonood, kwentuhan, skin care at higit sa lahat ang ating pagbabasa at pananalangin together.`,
   },
   {
     id: 2,
-    hint: "The second piece",
-    text: "PLACEHOLDER — replace me. The second part of what I wanted to say.",
+    hint: "In case you didn't know",
+    text: `Alam mo, mahal kita. At kung di mo pa rin alam, ayan, mahal kita. At patuloy kitang mamahalin at sana mahalin mo rin ako at patuloy kang mag extend ng grace sakin for being not the best boyfriend there is but I'm trying (di ako sadboy xD). I know I have many shortcomings and inconsistencies and I have no excuses. But I will keep on learning and keep on trying to make up and be the better lover for you.`,
   },
   {
     id: 3,
-    hint: "The third piece",
-    text: "PLACEHOLDER — replace me. The middle, the part that matters most.",
+    hint: "Why I'm proud of you",
+    text: `I am so so so proud of you. Sobrang nakakamangha ka. Sobrang strong mo. You're the strongest woman that I have ever met and I kid you not. How you've gone through the accident, operation, and now the recovery. With a strong mindset and spirit and emotional stability, bruh!! Nakakainlove lalo!! I will be with you throughout your seasons.`,
   },
   {
     id: 4,
-    hint: "The fourth piece",
-    text: "PLACEHOLDER — replace me. Nearly there now.",
+    hint: "The things I love",
+    text: `You never lost your beautiful smile and nakakahawang laugh. Your cute reactions on things is still the best. Your mataray at tampuhin attitude that I find really cute pati na rin ang iyong pagiging iyakin hahaha. Your love for your fam and friends and church and those you disciple. And your desire to keep on knowing God and reading His word. I love you for all those!!
+
+May our relationship remain healthy and above all, Godly. May we both continue to grow in Christ - becoming more like Him and love Him more and more. And malay mo, one day our lives would be a documentary din... Of being a great model of a Christ-like relationship for the next and next generations - or even (god-willingly) our children...`,
   },
   {
     id: 5,
-    hint: "The last piece",
-    text: "PLACEHOLDER — replace me. And this is how it ends.",
+    hint: "A promise",
+    text: `I still sometimes wish that I could take all your pain instead of you experiencing them, basta sayo na headache ko charot. Pero seriously, it hurts when i see you in pain - nasanay lang ako sa sigaw at iyak mo pero i still dont want you to be in that situation. I don't want you to get hurt but for now, My Ja, please keep on being strong for we both know na kailangan mo munang dumaan sa pain for now to recover.
+
+And one day, when all of those pains are just memories from the past. I'll try my best to give you this promise - na susulitin natin itong gift of life from God!! Mahal kita, at higit pa ay mahal ka ni Hesus!!
+
+P.S. Sorry that I did not come over today. Bawi ako sa ibang madaming araws to come, I love you!!`,
   },
 ];
 

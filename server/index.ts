@@ -16,7 +16,7 @@ import {
 } from "../game/shared";
 
 const TICK_HZ = 30;
-// Render (and most hosts) inject PORT; locally we fall back to our own.
+// Hosts like Render inject PORT; locally we fall back to our own.
 const PORT = Number(process.env.PORT ?? DEFAULT_PORT);
 const HOST = process.env.HOST ?? "0.0.0.0";
 
@@ -164,8 +164,8 @@ function updateZone(dt: number) {
 }
 
 /**
- * A plain HTTP server sits in front so hosts can detect the open port and so
- * there's a URL to hit that wakes the service from an idle spin-down.
+ * A plain HTTP server sits in front so hosts can detect the open port, and so
+ * there's a URL to hit that wakes the service after a free-tier spin-down.
  */
 const http = createServer((req, res) => {
   if (req.url === "/health") {

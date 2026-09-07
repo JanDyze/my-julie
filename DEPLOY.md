@@ -90,7 +90,9 @@ the same hostname Render gave you, with no port and no trailing slash.
 Then **redeploy** the Vercel project. `NEXT_PUBLIC_*` values are baked in at
 build time, so an existing deployment will not pick this up on its own.
 
-The lobby's **Play together** button appears only once this is set.
+**Play together** is always visible in the lobby. Until this variable points at
+a reachable server it will just report that it can't connect — solo play, and
+the whole letter hunt, work regardless.
 
 ---
 
