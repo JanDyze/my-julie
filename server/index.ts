@@ -1,3 +1,4 @@
+import { createServer } from "node:http";
 import { WebSocket, WebSocketServer } from "ws";
 import {
   COUNTDOWN_SECONDS,
@@ -15,7 +16,9 @@ import {
 } from "../game/shared";
 
 const TICK_HZ = 30;
+// Render (and most hosts) inject PORT; locally we fall back to our own.
 const PORT = Number(process.env.PORT ?? DEFAULT_PORT);
+const HOST = process.env.HOST ?? "0.0.0.0";
 
 interface Session {
   socket: WebSocket;
@@ -160,7 +163,28 @@ function updateZone(dt: number) {
   zone.countdown = Math.max(0, phaseTimer);
 }
 
-const wss = new WebSocketServer({ port: PORT });
+/**
+ * A plain HTTP server sits in front so hosts can detect the open port and so
+ * there's a URL to hit that wakes the service from an idle spin-down.
+ */
+const http = createServer((req, res) => {
+  if (req.url === "/health") {
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(
+      JSON.stringify({
+        ok: true,
+        phase: matchPhase,
+        players: [...sessions.values()].filter((s) => s.joined).length,
+        seed,
+      }),
+    );
+    return;
+  }
+  res.writeHead(200, { "Content-Type": "text/plain" });
+  res.end("Loot Island game server. Connect over WebSocket.\n");
+});
+
+const wss = new WebSocketServer({ server: http });
 
 wss.on("connection", (socket) => {
   const id = Math.random().toString(36).slice(2, 10);
@@ -298,4 +322,6 @@ setInterval(() => {
   if (matchPhase === "countdown") broadcast({ t: "match", match: matchState() });
 }, 1000 / TICK_HZ);
 
-console.log(`Loot Island server listening on ws://0.0.0.0:${PORT} (seed ${seed})`);
+http.listen(PORT, HOST, () => {
+  console.log(`Loot Island server listening on ${HOST}:${PORT} (seed ${seed})`);
+});

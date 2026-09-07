@@ -1,0 +1,12 @@
+services:
+  - name: my-julie-server
+    type: web
+    runtime: node
+    plan: free
+    # --include=dev because TypeScript is a devDependency and the build needs it.
+    buildCommand: npm install --include=dev && npm run build:server
+    startCommand: npm run start:server
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
